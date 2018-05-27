@@ -1,0 +1,30 @@
+Probléma
+--------
+Nem sikerül a Win 10 frissítés. Hibaüzenet példa: "Utolsó sikertelen 
+telepítési kísérlet: 2018.05.21. – 0x8024200d"
+
+Megoldás
+--------
+A NET-en találtam azt a megoldást, hogy rendszergazdaként elindított CMD-ben 
+ki kell adni a következõ parancsot:
+
+CMD> SC config trustedinstaller start=auto
+SC> exit
+CMD>
+
+Újra indítástól kezdve a telepítés sikeresen befejezõdik.
+
+Erre késztítek egy parancs-állományt és azzal indítom el a szervíz beállítását.
+Az CS parancs egy szolgáltatás beállító parancs: Configuring Windows services 
+using Command Prompt
+
+Tapasztalapok
+-------------
+1) Win CMD Code Page beállítása.
+Nálam a CMD 852-es Code Page-vel indul, az SC üzenetek ilyen karakterekkel 
+íródnak a konzolra. Ezen nem tudtam változtatni a CHCP parancs kiadásával: a 
+parancs állományból kiadott ECHO szövege korrekten a CHCP-val beállított Code 
+Page szerint jement meg, de az SC parancs továbbra is az OME852 szeinti 
+karakterekkel írt a Console-ra.
+
+
